@@ -69,6 +69,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeePage = employeeRepository.findAll(pageable);
         }
 
-        return employeePage.map(mapStruct::toDto);
+        return employeePage.map(employee -> mapStruct.toDto(employee));
     }
 }
