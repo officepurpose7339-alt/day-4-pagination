@@ -25,7 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private MapStruct mapStruct;
 
-    @Override
     public String addEmployee(EmployeeRequestDTO employeeRequestDTO) {
 
         Employee employee = mapStruct.toEntity(employeeRequestDTO);
@@ -43,7 +42,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return "Success";
     }
 
-    @Override
     public EmployeeResponseDTO getEmployeeByIdMapStruct(Long id) {
 
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id));
@@ -51,7 +49,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return mapStruct.toDto(employee);
     }
 
-    @Override
     public Page<EmployeeResponseDTO> getEmployees(String department, int page, int size, String sortBy, String direction) {
 
         Sort sort = direction.equalsIgnoreCase("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
